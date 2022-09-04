@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百叶窗效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            margin: 0 auto;
+            width: 52.1vw;
+            height: 20.8vw;
+            overflow: hidden;
+            display: flex;
+            transition: all .3s;
+        }
+
+        nav:hover li {
+            width: 6.9vw;
+        }
+
+
+        li {
+            list-style: none;
+            height: 20.8vw;
+            width: 13vw;
+            text-align: center;
+            color: black;
+            position: relative;
+            transition: all .3s;
+            opacity: .9;
+        }
+
+        nav li:hover {
+            opacity: 1;
+            width: 31.3vw;
+        }
+
+        img {
+            height: 20.8vw;
+            width: 31.3vw;
+        }
+
+        li div {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <li>
+            <img src="./images/图片1.jpg" alt="">
+            <div class="name">图片1</div>
+        </li>
+        <li><img src="./images/图片2.jpg" alt="">
+            <div class="name">图片2</div>
+        </li>
+        <li><img src="./images/图片3.jpg" alt="">
+            <div class="name">图片3</div>
+        </li>
+        <li><img src="./images/图片4.jpg" alt="">
+            <div class="name">图片4</div>
+        </li>
+    </nav>
+</body>
+
+</html>
