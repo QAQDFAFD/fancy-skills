@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: rgba(130, 140, 250, 0.2);
+            }
+
+            .content {
+                max-width: 1300px;
+                column-count: 5;
+                /* 左右间隔的大小是 15px */
+                column-gap: 15px;
+                margin: 0 auto;
+            }
+            /* 去掉默认的原点 */
+            li {
+                list-style: none;
+                margin-top: 15px;
+            }
+
+            /* 将图片的宽度设为与 li 一致 */
+            img {
+                width: 100%;
+            }
+
+            /* 媒体查询 */
+            /* 响应式 */
+            @media screen and (max-width: 1080px) {
+                .content {
+                    column-count: 4;
+                }
+            }
+            @media screen and (max-width: 900px) {
+                .content {
+                    column-count: 3;
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                .content {
+                    column-count: 2;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <li><img src="./images/image1.jpeg" alt="" /></li>
+            <li><img src="./images/image2.jpeg" alt="" /></li>
+            <li><img src="./images/image3.jpeg" alt="" /></li>
+            <li><img src="./images/image4.jpeg" alt="" /></li>
+            <li><img src="./images/image5.jpeg" alt="" /></li>
+            <li><img src="./images/image6.jpeg" alt="" /></li>
+            <li><img src="./images/image7.jpeg" alt="" /></li>
+            <li><img src="./images/image8.jpeg" alt="" /></li>
+            <li><img src="./images/image9.jpeg" alt="" /></li>
+            <li><img src="./images/image10.jpeg" alt="" /></li>
+            <li><img src="./images/image11.jpeg" alt="" /></li>
+            <li><img src="./images/image12.jpeg" alt="" /></li>
+            <li><img src="./images/image13.jpeg" alt="" /></li>
+            <li><img src="./images/image14.jpeg" alt="" /></li>
+            <li><img src="./images/image15.jpeg" alt="" /></li>
+            <li><img src="./images/image16.jpeg" alt="" /></li>
+            <li><img src="./images/image17.jpeg" alt="" /></li>
+            <li><img src="./images/image18.jpeg" alt="" /></li>
+            <li><img src="./images/image19.jpeg" alt="" /></li>
+            <li><img src="./images/image20.jpeg" alt="" /></li>
+            <li><img src="./images/image21.jpeg" alt="" /></li>
+            <li><img src="./images/image22.jpeg" alt="" /></li>
+            <li><img src="./images/image23.jpeg" alt="" /></li>
+            <li><img src="./images/image24.jpeg" alt="" /></li>
+            <li><img src="./images/image25.jpeg" alt="" /></li>
+        </div>
+    </body>
+</html>
