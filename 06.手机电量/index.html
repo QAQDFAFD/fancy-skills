@@ -16,6 +16,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-color: rgb(0, 0, 0);
             }
 
             .content {
@@ -36,7 +37,7 @@
                 margin-bottom: 1vw;
                 background-color: coral;
                 border-radius: 0.5vw;
-                font-size: 0.6vw;
+                font-size: 0.5vw;
             }
 
             /* 点击事件 */
@@ -54,7 +55,7 @@
                 margin-bottom: 1vw;
                 background-color: coral;
                 border-radius: 0.5vw;
-                font-size: 0.6vw;
+                font-size: 0.5vw;
             }
 
             /* 点击事件 */
@@ -70,19 +71,6 @@
                 position: relative;
                 margin-bottom: 1.6vw;
             }
-            /* 上面突出的那一部分 */
-            .battery::before {
-                content: "";
-                position: absolute;
-                width: 2.6vw;
-                height: 1.2vw;
-                background-color: rgb(0, 0, 0);
-                top: -1.2vw;
-                left: 50%;
-                transform: translate(-50%);
-                border-top-left-radius: 0.5vw;
-                border-top-right-radius: 0.5vw;
-            }
             /* 充的电 */
             .batteryNum {
                 position: absolute;
@@ -96,15 +84,44 @@
                 );
                 bottom: 0;
                 left: 0;
-                top: 80%;
                 border-radius: 0.5vw;
                 /* 动画属性 */
-                animation: charge 5s linear infinite;
+                animation: charge 5s linear 1 forwards;
+            }
+            .water {
+                position: absolute;
+                width: 5.2vw;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                border-radius: 0.5vw;
+                z-index: 10;
+                overflow: hidden;
+            }
+            .waterOne {
+                width: 20.8vw;
+                height: 20.8vw;
+                border-radius: 40% 48%;
+                background: rgba(255, 255, 255, 1);
+                left: 50%;
+                position: absolute;
+                /* 动画属性 */
+                animation: waterOne 5s linear 1 forwards;
+            }
+            .waterTwo {
+                width: 20.8vw;
+                height: 20.8vw;
+                border-radius: 32% 40%;
+                background: rgba(255, 255, 255, 1);
+                position: absolute;
+                left: 50%;
+                /* 动画属性 */
+                animation: waterTwo 5s linear 1 forwards;
             }
             /* 充电的动画 */
             @keyframes charge {
                 0% {
-                    top: 80%;
+                    top: 100%;
                     filter: hue-rotate(90deg);
                 }
                 50% {
@@ -116,12 +133,41 @@
                     filter: hue-rotate(0deg);
                 }
             }
+            /* 水纹动画1 */
+            @keyframes waterOne {
+                0% {
+                    transform: translate(-50%) rotate(0deg);
+                    bottom: 0;
+                }
+                100% {
+                    transform: translate(-50%) rotate(360deg);
+                    bottom: 10.4vw;
+                }
+            }
+            /* 水纹动画2 */
+            @keyframes waterTwo {
+                0% {
+                    transform: translate(-50%) rotate(0deg);
+                    bottom: 0;
+                }
+                100% {
+                    transform: translate(-50%) rotate(360deg);
+                    bottom: 10.4vw;
+                }
+            }
         </style>
     </head>
     <body>
         <div class="content">
             <div class="battery">
+                <!-- 充的电量 -->
                 <div class="batteryNum"></div>
+                <!-- 水波纹 -->
+                <div class="water">
+                    <!-- 因为需要获取节点，所以设置两个元素，使用伪元素写不方便 -->
+                    <div class="waterOne"></div>
+                    <div class="waterTwo"></div>
+                </div>
             </div>
             <div class="option">
                 <div class="start">开始充电</div>
@@ -130,13 +176,26 @@
         </div>
         <script>
             // 获取相关节点
-            let batteryNumDom = document.querySelector(".batteryNum");
-            console.log(batteryNumDom);
+            const startDOM = document.querySelector(".start");
+            const batteryNumDOM = document.querySelector(".batteryNum");
+            const stopDOM = document.querySelector(".stop");
+            const waterOne = document.querySelector(".waterOne");
+            const waterTwo = document.querySelector(".waterTwo");
+            batteryNumDOM.style.animationPlayState = "paused";
+            waterOne.style.animationPlayState = "paused";
+            waterTwo.style.animationPlayState = "paused";
             // 充电事件
-            batteryNumDom.onclick = function () {
-                console.log("1111");
-            };
+            startDOM.addEventListener("click", () => {
+                batteryNumDOM.style.animationPlayState = "running";
+                waterOne.style.animationPlayState = "running";
+                waterTwo.style.animationPlayState = "running";
+            });
             // 停止充电事件
+            stopDOM.addEventListener("click", () => {
+                batteryNumDOM.style.animationPlayState = "paused";
+                waterOne.style.animationPlayState = "paused";
+                waterTwo.style.animationPlayState = "paused";
+            });
         </script>
     </body>
 </html>
