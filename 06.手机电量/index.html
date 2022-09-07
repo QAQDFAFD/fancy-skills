@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>手机电量</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                /* 为了让效果显示在屏幕中间 */
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                color: rgb(15, 15, 5);
+            }
+
+            /* 开始充电按钮 */
+            .start {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 7vw;
+                height: 2.6vw;
+                margin-bottom: 1vw;
+                background-color: coral;
+                border-radius: 0.5vw;
+                font-size: 0.6vw;
+            }
+
+            /* 点击事件 */
+            .start:active {
+                transform: scale(0.9);
+            }
+
+            /* 结束充电 */
+            .stop {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 7vw;
+                height: 2.6vw;
+                margin-bottom: 1vw;
+                background-color: coral;
+                border-radius: 0.5vw;
+                font-size: 0.6vw;
+            }
+
+            /* 点击事件 */
+            .stop:active {
+                transform: scale(0.9);
+            }
+
+            .battery {
+                width: 5.2vw;
+                height: 10.4vw;
+                background-color: black;
+                border-radius: 0.5vw;
+                position: relative;
+                margin-bottom: 1.6vw;
+            }
+            /* 上面突出的那一部分 */
+            .battery::before {
+                content: "";
+                position: absolute;
+                width: 2.6vw;
+                height: 1.2vw;
+                background-color: rgb(0, 0, 0);
+                top: -1.2vw;
+                left: 50%;
+                transform: translate(-50%);
+                border-top-left-radius: 0.5vw;
+                border-top-right-radius: 0.5vw;
+            }
+            /* 充的电 */
+            .batteryNum {
+                position: absolute;
+                width: 5.2vw;
+                background-color: rgb(0, 0, 0);
+                background: linear-gradient(
+                    to bottom,
+                    #04e963 0%,
+                    #0bdf9f 44%,
+                    #0bdfc3 100%
+                );
+                bottom: 0;
+                left: 0;
+                top: 80%;
+                border-radius: 0.5vw;
+                /* 动画属性 */
+                animation: charge 5s linear infinite;
+            }
+            /* 充电的动画 */
+            @keyframes charge {
+                0% {
+                    top: 80%;
+                    filter: hue-rotate(90deg);
+                }
+                50% {
+                    top: 40%;
+                    filter: hue-rotate(45deg);
+                }
+                100% {
+                    top: 0%;
+                    filter: hue-rotate(0deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="battery">
+                <div class="batteryNum"></div>
+            </div>
+            <div class="option">
+                <div class="start">开始充电</div>
+                <div class="stop">暂停充电</div>
+            </div>
+        </div>
+        <script>
+            // 获取相关节点
+            let batteryNumDom = document.querySelector(".batteryNum");
+            console.log(batteryNumDom);
+            // 充电事件
+            batteryNumDom.onclick = function () {
+                console.log("1111");
+            };
+            // 停止充电事件
+        </script>
+    </body>
+</html>
