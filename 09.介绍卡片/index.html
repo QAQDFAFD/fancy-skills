@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>滚轮视差</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .content {
+                height: 200vh;
+                position: relative;
+                color: white;
+            }
+            .name {
+                background-image: url("https://picgo-use-images.oss-cn-shanghai.aliyuncs.com/images/图片3.jpg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                -webkit-background-clip: text;
+                color: transparent;
+                font-size: 30vw;
+                position: relative;
+                height: 200vh;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* 使用伪元素做出背景 */
+            .name::after {
+                content: "111";
+                background-image: inherit;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                /* 设置层级 */
+                z-index: -1;
+            }
+
+            /* 设置文字的一些样式和定位 */
+            .intro {
+                position: absolute;
+                bottom: 10vw;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="name">Ryan</div>
+            <div class="intro">
+                Dahl grew up in San Diego, California. His mother got him an
+                Apple IIc when he was six years old, one of his first
+                experiences with technology. Ryan attended a community college
+                in San Diego and later transferred into UC San Diego where he
+                studied mathematics. He went on to attend grad school for
+                Mathematics at the University of Rochester where he studied
+                algebraic topology, which he found "very abstract and beautiful"
+                for a couple of years but later got bored of it because "it was
+                not so applicable to real life".
+            </div>
+        </div>
+        <script>
+            // 获取相关节点
+            const bgDOM = document.querySelector(".name");
+            // 滚轮响应事件
+            document.addEventListener("scroll", () => {
+                // 获取滚轮的位置（纵轴
+                const scrollY = window.scrollY;
+                // 进行判断，如果滚轮的位置不是在0的话（纵轴
+                if (scrollY !== 0) {
+                    // 这里横向的坐标其实可以单独写
+                    bgDOM.style.backgroundPosition = `calc(50% + ${scrollY}px) calc(50% + ${scrollY}px)`;
+                }
+            });
+        </script>
+    </body>
+</html>

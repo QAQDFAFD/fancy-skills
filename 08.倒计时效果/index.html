@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>倒计时效果</title>
+        <style>
+            body {
+                background-color: black;
+            }
+
+            .time {
+                color: white;
+                font-size: 1.6vw;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            canvas {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 设置 canvas 的初始化大小 -->
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <div class="time">60</div>
+        <!-- 关键还是在这里 -->
+        <script>
+            // 获取相关的节点
+            const canvas = document.querySelector("canvas");
+            const timeDOM = document.querySelector(".time");
+            // 选择 canvas 的绘画模式是 2d
+            const ctx = canvas.getContext("2d");
+            // 线条的颜色是白色
+            ctx.strokeStyle = "#fff";
+            // 线条的宽度是 15
+            ctx.lineWidth = 15;
+            // 阴影的模糊程度
+            ctx.shadowBlur = 13;
+            // 阴影的颜色
+            ctx.shadowColor = "#fff";
+            // 初始化 time
+            let time = 60;
+            /**
+             * @description: 让时间递减1
+             * @return {time}
+             */
+            let getTime = () => {
+                time--;
+                return time;
+            };
+            /**
+             * @description: 返回终点的坐标
+             */
+            let dTor = (time) => {
+                return (time / 60) * 2 * Math.PI;
+            };
+            /**
+             * @description: canvas 的本质就是重复执行，这是需要重复执行的函数
+             * @return {*}
+             */
+            let draw = () => {
+                // 获取时间，每执行一次时间就会减去 6
+                let t = getTime();
+                // 开始绘画
+                ctx.beginPath();
+                // 画的是一个圆形
+                // fillRect() 参数分别是 x,y,width,height
+                // 这里的意思就是整个画布的大小
+                ctx.fillRect(0, 0, 500, 500);
+                // 我们在画布中画一个圆形
+                // arc()是画圆的函数
+                // ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+                ctx.arc(250, 250, 140, 0, dTor(t), false);
+                ctx.stroke();
+                timeDOM.innerHTML--;
+            };
+            setInterval(draw, 1000);
+        </script>
+    </body>
+</html>
