@@ -4,83 +4,118 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>滚轮视差</title>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-            }
-            .content {
-                height: 200vh;
-                position: relative;
-                color: white;
-            }
-            .name {
-                background-image: url("https://picgo-use-images.oss-cn-shanghai.aliyuncs.com/images/图片3.jpg");
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                -webkit-background-clip: text;
-                color: transparent;
-                font-size: 30vw;
-                position: relative;
-                height: 200vh;
-                width: 100%;
-                text-align: center;
-            }
-
-            /* 使用伪元素做出背景 */
-            .name::after {
-                content: "111";
-                background-image: inherit;
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                /* 设置层级 */
-                z-index: -1;
-            }
-
-            /* 设置文字的一些样式和定位 */
-            .intro {
-                position: absolute;
-                bottom: 10vw;
-                text-align: center;
-            }
-        </style>
+        <title>任务介绍卡片</title>
     </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: grey;
+        }
+        .content {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .one,
+        .two,
+        .three {
+            width: 20.8vw;
+            height: 36vw;
+            background-color: rgb(77, 76, 76);
+            border-radius: 0.5vw;
+            position: relative;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5vw;
+            /* 变化的时间是半秒钟 */
+            transition: all 0.5s;
+            z-index: 2;
+            position: absolute;
+        }
+
+        /* 鼠标移动上去之后的图片位置需要变化 */
+        .one:hover img {
+            height: 35%;
+        }
+
+        .two:hover img {
+            height: 35%;
+        }
+
+        .three:hover img {
+            height: 35%;
+        }
+
+        /* 由于背景图片都不是太正方形所以需要调整图片的位置来将人物的位置放到中间 */
+        .one img {
+            object-position: 80% 50%;
+        }
+        .two img {
+            object-position: 10% 50%;
+        }
+        .three img {
+            object-position: 25% 50%;
+        }
+
+        h2 {
+            color: rgb(181, 173, 173);
+            position: absolute;
+            bottom: 15.6vw;
+            text-align: center;
+            width: 100%;
+            z-index: 1;
+        }
+
+        p {
+            position: absolute;
+            top: 25vw;
+            text-align: left;
+            padding: 1vw;
+            color: rgb(181, 173, 173);
+            z-index: 1;
+        }
+    </style>
     <body>
         <div class="content">
-            <div class="name">Ryan</div>
-            <div class="intro">
-                Dahl grew up in San Diego, California. His mother got him an
-                Apple IIc when he was six years old, one of his first
-                experiences with technology. Ryan attended a community college
-                in San Diego and later transferred into UC San Diego where he
-                studied mathematics. He went on to attend grad school for
-                Mathematics at the University of Rochester where he studied
-                algebraic topology, which he found "very abstract and beautiful"
-                for a couple of years but later got bored of it because "it was
-                not so applicable to real life".
+            <div class="one">
+                <img
+                    src="https://picgo-use-images.oss-cn-shanghai.aliyuncs.com/images/v2-990559a0de9e39414e7c1dc96d2904ce_1440w.jpg"
+                    alt=""
+                />
+                <h2>龙母</h2>
+                <p>
+                    疯王的女儿，雷加的妹妹，很小被迫逃去了狭海对面，后来被哥哥维塞德斯卖给了马王，之后一路摸爬滚打带领无垢者和多斯拉克人打回了维斯特洛大陆。
+                </p>
+            </div>
+            <div class="two">
+                <img
+                    src="https://picgo-use-images.oss-cn-shanghai.aliyuncs.com/images/2e57-3ffd7defb62679294752f7fc18bd046e.jpg"
+                    alt=""
+                />
+                <h2>琼恩·雪诺</h2>
+                <p>
+                    表面上是奈得·史塔克的私生子，实际上是雷加和奈得的妹妹的儿子。
+                </p>
+            </div>
+            <div class="three">
+                <img
+                    src="https://picgo-use-images.oss-cn-shanghai.aliyuncs.com/images/20220908174857.png"
+                    alt=""
+                />
+                <h2>艾丽娅·史塔克</h2>
+                <p>
+                    奈得·史塔克的小女儿，从黑白神殿出来后一路报仇，最终回到了临冬城，在剧中最终杀死了夜王。
+                </p>
             </div>
         </div>
-        <script>
-            // 获取相关节点
-            const bgDOM = document.querySelector(".name");
-            // 滚轮响应事件
-            document.addEventListener("scroll", () => {
-                // 获取滚轮的位置（纵轴
-                const scrollY = window.scrollY;
-                // 进行判断，如果滚轮的位置不是在0的话（纵轴
-                if (scrollY !== 0) {
-                    // 这里横向的坐标其实可以单独写
-                    bgDOM.style.backgroundPosition = `calc(50% + ${scrollY}px) calc(50% + ${scrollY}px)`;
-                }
-            });
-        </script>
     </body>
 </html>
