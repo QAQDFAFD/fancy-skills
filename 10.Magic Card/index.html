@@ -1,0 +1,142 @@
+<!--
+ * @Author: lijiajun wy15195382735@163.com
+ * @Date: 2022-09-10 09:23:54
+ * @LastEditors: lijiajun wy15195382735@163.com
+ * @LastEditTime: 2022-09-10 10:22:54
+ * @Description: Magic Card
+ * Copyright (c) 2022 by lijiajun wy15195382735@163.com, All Rights Reserved. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            /* 通用样式 */
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            /* 定义属性 */
+            @property --rotate {
+                /* 含义 */
+                syntax: "<angle>";
+                /* 初始值 */
+                initial-value: 132deg;
+                /* 是否遗传 */
+                inherits: false;
+            }
+            :root {
+                /* 设置宽度和高度 */
+                --card-height: 40vh;
+                /* 这样写的话如果横向拉浏览器是没有适配的效果的 */
+                --card-width: calc(var(--card-height) / 1.5);
+            }
+            body {
+                height: 100vh;
+                background-color: #212534;
+                /* 居中 */
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 2rem 0;
+                /* 盒模型 */
+                box-sizing: border-box;
+            }
+            .card {
+                background-color: #191c29;
+                /* 定义变量 */
+                width: var(--card-width);
+                height: var(--card-height);
+                padding: 3px;
+                /* 相对定位 */
+                /* 方便其中的伪元素进行绝对定位 */
+                position: relative;
+                border-radius: 6px;
+                /* 居中 */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* 文字居中 */
+                text-align: center;
+                font-size: 1.5rem;
+                /* 字体的颜色 */
+                color: rgba(88, 129, 250, 0);
+                /* 鼠标样式 */
+                cursor: pointer;
+                /* 字体的样式 */
+                font-family: cursive;
+            }
+            .card:hover {
+                color: rgb(88, 199, 250, 1);
+                /* 颜色变化的时间 */
+                transition: color 1s;
+            }
+            /* 鼠标移到上面的时候设置两个伪元素的样式 */
+            /* 将鼠标移动上去之后，隐藏伪元素 */
+            .card:hover::before,
+            .card:hover::after {
+                animation: none;
+                opacity: 0;
+            }
+            .card::before {
+                content: "";
+                width: 104%;
+                height: 102%;
+                border-radius: 8px;
+                background-image: linear-gradient(
+                    var(--rotate),
+                    #5ddcff,
+                    #3c67e3 43%,
+                    #4e00c2
+                );
+                position: absolute;
+                /* 设置层级 */
+                z-index: -1;
+                /* 进定位 */
+                top: -1%;
+                left: -2%;
+                /* 设置动画的样式 */
+                animation: spin 2.5s linear infinite;
+            }
+            .card::after {
+                content: "";
+                position: absolute;
+                top: calc(var(--card-height) / 6);
+                left: 0;
+                right: 0;
+                z-index: -1;
+                /* 即 ::after 元素的大小与 card 元素的大小是一样的 */
+                height: 100%;
+                width: 100%;
+                /* 缩放 0.8 */
+                transform: scale(0.8);
+                /* 模糊效果 */
+                filter: blur(calc(var(--card-height) / 6));
+                background-image: linear-gradient(
+                    var(--rotate),
+                    #5ddcff,
+                    #3c67e3 43%,
+                    #4e00c2
+                );
+                opacity: 1;
+                transition: opacity 0.5s;
+                animation: spin 2.5s linear infinite;
+            }
+            /* spin 动画 */
+            @keyframes spin {
+                0% {
+                    --rotate: 0deg;
+                }
+                100% {
+                    --rotate: 360deg;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">Magic Card</div>
+    </body>
+</html>
