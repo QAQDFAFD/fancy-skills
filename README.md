@@ -1,6 +1,6 @@
 # fancy-skills
 
-一些用简单的方法写出来的效果
+一些 HTML、CSS、JavaScript 实践。
 
 -   01.ANIPLEX 旋转动效
 -   02.仿制 B 站 PC 端首页的吃豆人轮播图
@@ -15,3 +15,4 @@
 -   11.Expanding flex cards
 -   12.3d 翻书效果
 -   13.不同的按钮效果
+-   14.旋转视差

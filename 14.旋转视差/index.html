@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas:
+                'A A B'
+                'C E B'
+                'C D D';
+            gap: 10px;
+            --r: 360deg;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .item1 {
+            grid-area: A;
+        }
+        .item2 {
+            grid-area: B;
+        }
+        .item3 {
+            grid-area: C;
+        }
+        .item4 {
+            grid-area: D;
+        }
+        .item5 {
+            grid-area: E;
+        }
+        .container > div {
+            overflow: hidden;
+            border: 1px black solid;
+            --r: -360deg;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container,
+        .container > div > img {
+            animation: rotating 10s linear infinite;
+        }
+        img {
+            width: 250%;
+            height: 250%;
+            object-fit: cover;
+        }
+
+        @keyframes rotating {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(var(--r));
+            }
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="item1"><img src="./images/image1.png" alt="展示的图片" /></div>
+            <div class="item2"><img src="./images/image2.png" alt="展示的图片" /></div>
+            <div class="item3"><img src="./images/image3.png" alt="展示的图片" /></div>
+            <div class="item4"><img src="./images/image4.png" alt="展示的图片" /></div>
+            <div class="item5"><img src="./images/image5.png" alt="展示的图片" /></div>
+        </div>
+    </body>
+</html>
