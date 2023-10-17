@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'
+          name='viewport'>
+    <meta content='ie=edge' http-equiv='X-UA-Compatible'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --hue: 210;
+        --size: 100px;
+        --border: 10px;
+        --speed: 1s;
+        --blur: var(--border);
+    }
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        /* 色调 饱和度 亮度 简称为 hsl*/
+        background: hsl(var(--hue) 50% 8%);
+    }
+
+    .loader {
+        width: var(--border);
+        /* 用于设置元素的宽高比 */
+        aspect-ratio: 1;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        /*注意这个长度的计算*/
+        --y: calc((var(--size) * -0.5) + (var(--border) * 0.5));
+        transform: rotate(0deg) translateY(var(--y));
+        /*逆时针旋转*/
+        -webkit-animation: spin var(--speed) infinite linear;
+        animation: spin var(--speed) infinite linear;
+    }
+
+    .loader::before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        /*这里实际上是为了设置这个元素的大小，让他变大一点*/
+        inset: calc(var(--border) * -0.5);
+        background: white;
+        filter: blur(var(--blur));
+        z-index: -1;
+    }
+
+    .loader::after {
+        content: "";
+        position: absolute;
+        width: var(--size);
+        aspect-ratio: 1;
+        top: 0%;
+        left: 50%;
+        border-radius: 50%;
+        translate: -50% 0;
+        /*圆锥渐变*/
+        background: conic-gradient(white, hsl(var(--hue), 100%, 70%), hsl(var(--hue), 100%, 10%), transparent 65%);
+        /*使用 css 函数创建一个图像作为遮罩层*/
+        /*注意在 chrome 下只有 -webkit-mask 生效*/
+        -webkit-mask: radial-gradient(
+            transparent calc(((var(--size) * 0.5) - var(--border)) - 1px),
+            white calc((var(--size) * 0.5) - var(--border)));
+        mask: radial-gradient(
+            transparent calc((var(--size) * 0.5 - var(--border)) - 1px),
+            white calc(var(--size) * 0.5 - var(--border))
+        );
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(-360deg) translateY(var(--y));
+        }
+    }
+
+    @-webkit-keyframes spin {
+        to {
+            transform: rotate(-360deg) translateY(var(--y));
+        }
+    }
+</style>
+<body>
+<div aria-live='assertive' class='loader' role='alert'></div>
+</body>
+</html>
