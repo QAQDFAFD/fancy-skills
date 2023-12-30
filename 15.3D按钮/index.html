@@ -1,106 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <style>
-        :root {
-            --spring-easing: linear(
-                0,
-                0.178 3.4%,
-                1.025 12.7%,
-                1.179,
-                1.249 18.6%,
-                1.254 20.5%,
-                1.233 22.6%,
-                1.001 32.9%,
-                0.938 39%,
-                0.941 43.2%,
-                0.999 53.2%,
-                1.015 59.1%,
-                0.996 79%,
-                1.001
-            );
-        }
-        body {
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            width: 500px;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .outer {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            background: radial-gradient(
-                    111.94% 111.94% at 14.84% 14.84%,
-                    rgba(246, 240, 255, 0.6) 0%,
-                    rgba(76, 5, 189, 0.6) 50%,
-                    rgba(246, 240, 255, 0.6) 100%
-                ),
-                #6200ff;
-            background-position: 20% 20%;
-            background-size: 200% 200%;
-            filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.26)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.26))
-                drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.22)) drop-shadow(1px 8px 5px rgba(0, 0, 0, 0.13))
-                drop-shadow(2px 14px 6px rgba(0, 0, 0, 0.04)) drop-shadow(3px 22px 6px rgba(0, 0, 0, 0));
-            transition: all 0.4s var(--spring-easing);
-        }
-        .inner {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(
-                    170.26% 170.26% at 111.61% 118.75%,
-                    rgba(255, 255, 255, 0.4) 0%,
-                    rgba(98, 0, 255, 0.4) 50%,
-                    rgba(255, 255, 255, 0.4) 100%
-                ),
-                #6200ff;
-            background-size: 200% 200%;
-            background-position: 80% 80%;
-            transition: inherit;
-        }
-        .isOpen .inner {
-            background-position: 60% 60%;
-            transform: scale(1.1) translateY(-0.6rem);
-        }
-        .isOpen .outer {
-            background-position: 40% 40%;
-        }
-    </style>
-    <body>
-        <div class="container">
-            <div class="outer">
-                <div class="inner">Hello!</div>
-            </div>
-        </div>
-        <script>
-            const dom = document.querySelector('.outer')
-            dom.addEventListener('click', () => {
-                dom.classList.toggle('isOpen')
-                console.log('click')
-            })
-        </script>
-    </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+</head>
+<style>
+	:root {
+		--spring-easing: linear(0,
+				0.178 3.4%,
+				1.025 12.7%,
+				1.179,
+				1.249 18.6%,
+				1.254 20.5%,
+				1.233 22.6%,
+				1.001 32.9%,
+				0.938 39%,
+				0.941 43.2%,
+				0.999 53.2%,
+				1.015 59.1%,
+				0.996 79%,
+				1.001);
+	}
+
+	body {
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.container {
+		width: 500px;
+		height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.outer {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		background: radial-gradient(111.94% 111.94% at 14.84% 14.84%,
+				rgba(246, 240, 255, 0.6) 0%,
+				rgba(76, 5, 189, 0.6) 50%,
+				rgba(246, 240, 255, 0.6) 100%),
+			#6200ff;
+		background-position: 20% 20%;
+		background-size: 200% 200%;
+		filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.26)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.26)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.22)) drop-shadow(1px 8px 5px rgba(0, 0, 0, 0.13)) drop-shadow(2px 14px 6px rgba(0, 0, 0, 0.04)) drop-shadow(3px 22px 6px rgba(0, 0, 0, 0));
+		transition: all 0.4s var(--spring-easing);
+	}
+
+	.inner {
+		width: 160px;
+		height: 160px;
+		border-radius: 50%;
+		font-size: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: radial-gradient(170.26% 170.26% at 111.61% 118.75%,
+				rgba(255, 255, 255, 0.4) 0%,
+				rgba(98, 0, 255, 0.4) 50%,
+				rgba(255, 255, 255, 0.4) 100%),
+			#6200ff;
+		background-size: 200% 200%;
+		background-position: 80% 80%;
+		transition: inherit;
+	}
+
+	.isOpen .inner {
+		background-position: 60% 60%;
+		transform: scale(1.1) translateY(-0.6rem);
+	}
+
+	.isOpen .outer {
+		background-position: 40% 40%;
+	}
+</style>
+
+<body>
+	<div class="container">
+		<div class="outer">
+			<div class="inner">Hello!</div>
+		</div>
+	</div>
+	<script>
+		const dom = document.querySelector('.outer')
+		dom.addEventListener('click', () => {
+			dom.classList.toggle('isOpen')
+			console.log('click')
+		})
+	</script>
+</body>
+
 </html>

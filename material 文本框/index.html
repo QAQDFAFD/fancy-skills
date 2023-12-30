@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background: #eee;
+			font-family: "Roboto", sans-serif;
+		}
+
+		.form-item {
+			position: relative;
+			margin: 45px 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.form-item input {
+			width: 100%;
+			height: 40px;
+			/* 去掉四周的边框 */
+			border: none;
+			outline: none;
+			font-size: 18px;
+			color: #666;
+		}
+
+		/* 给 label 绝对定位 */
+		.form-item label {
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -50%);
+			left: 10px;
+			font-size: 18px;
+			color: #999;
+			transition: all 0.3s ease-in-out;
+			cursor: text;
+		}
+
+		.form-item .bar {
+			width: 100%;
+			height: 2px;
+			background: #ffffff;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.form-item input:focus~.bar {
+			background-color: black;
+			animation: show 0.3s ease-in-out forwards;
+		}
+
+		.form-item input:focus~label {
+			top: -50%;
+			left: 0;
+		}
+
+		@keyframes show {
+			0% {
+				width: 0;
+			}
+
+			100% {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form-item">
+		<input type="text" id="username">
+		<div class="bar"></div>
+		<label for="username">User Name</label>
+	</div>
+</body>
+
+</html>
